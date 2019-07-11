@@ -5,10 +5,10 @@ __pycache__/
 
 # C extensions
 *.so
-/migration/*
+migration/*
 # Distribution / packaging
 .Python
-build/
+
 develop-eggs/
 dist/
 downloads/
