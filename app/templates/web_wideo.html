@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+
+
+    <script src="https://cdn.bootcss.com/jquery/1.8.3/jquery.min.js"></script>
+
+    <script src="https://cdn.bootcss.com/jqueryui/1.9.2/jquery-ui.min.js"></script>
+    <script src="https://cdn.bootcss.com/three.js/r83/three.js"></script>
+    <script src="./build/createjs.js"></script>
+
+    <script src="../static/build/eventemitter2.js"></script>
+    <script src="../static/build/mjpegcanvas.js"></script>
+    <script src="../static/build/keyboardteleop.js"></script>
+    <script src="../static/build/ros3d.js"></script>
+    <script src="../static/build/roslib.js"></script>
+    <script src="../static/build/jointstatepublisher.js"></script>
+    <script src="../static/build/ros2d.js"></script>
+    <script>
+
+        /**
+         * Setup all visualization elements when the page is loaded.
+         */
+
+
+        var teleop_topic = '/cmd_vel_mux/input/teleop'
+        var base_frame = 'odom';
+
+
+        function init() {
+
+            var ros = new ROSLIB.Ros({
+                url: 'ws://localhost:9090'
+            });
+
+
+            // Create the main viewer.
+            var viewer = new MJPEGCANVAS.MultiStreamViewer({
+                divID: 'mjpeg',
+                host: 'localhost',
+                width: 640,
+                height: 480,
+                interval: 200,
+                topics: ['/usb_cam/image_raw', '/camera/rgb/image_raw',
+                    '/camera/rgb/image_raw'],
+                labels: ['Robot View', 'Left Arm View', 'Right Arm View']
+
+            });
+
+
+            // Initialize the teleop.
+            var teleop = new KEYBOARDTELEOP.Teleop({
+                ros: ros,
+                topic: teleop_topic
+            });
+
+
+            // Create a UI slider using JQuery UI.
+            $('#speed-slider').slider({
+                range: 'min',
+                min: 0,
+                max: 100,
+                value: 40,
+                slide: function (event, ui) {
+                    // Change the speed label.
+                    $('#speed-label').html('Speed: ' + ui.value + '%');
+                    // Scale the speed.
+                    teleop.scale = (ui.value / 100.0);
+                }
+            });
+
+            // Set the initial speed .
+            $('#speed-label').html('Speed: ' + ($('#speed-slider').slider('value')) + '%');
+            teleop.scale = ($('#speed-slider').slider('value') / 100.0);
+
+            init_flag = false;
+        }
+
+
+    </script>
+</head>
+
+<body onload="init()">
+<h1>Robot Surveillance from Web-browser</h1>
+<!-- <p>
+  Run the following commands in the terminal then refresh this page.
+</p>
+<ol>
+  <li><tt>roslaunch turtlebot_gazebo turtlebot_world.launch</tt></li>
+  <li><tt>rosrun web_video_server web_video_server</tt></li>
+  <li><tt>roslaunch rosbridge_server rosbridge_websocket.launch </tt></li>
+
+
+</ol> -->
+<div style="text-align: center">
+    <div id="mjpeg"></div>
+
+    <div id="speed-label"></div>
+    <div id="speed-slider">done</div>
+
+</div>
+
+</body>
+</html>
