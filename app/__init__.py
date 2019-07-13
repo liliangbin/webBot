@@ -12,6 +12,7 @@ db = SQLAlchemy()
 
 def create_app(config_name):
     app = Flask(__name__)
+    print config_name,'   config_name '
     app.config.from_object(config[config_name])
     config[config_name].init_app(app)
     # TODO  liliangbin  路由与自定义错误页面

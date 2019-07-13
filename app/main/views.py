@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 from app.speech import Speech
 from . import main
 from .. import db

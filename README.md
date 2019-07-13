@@ -13,7 +13,7 @@
 - export FLAK_APP=flasky.py // 项目的启动入口
 - export FLASK_DEBUG=1  # 开启debug  模式
 - flask run // 启动项目
-
+- 语音识别包 pip install baidu-aip
 --- 
 - 启动选项的时候我们可以选择启动的版本详情看config.py  和 flasky.py  
 - 假如使用自己的数据库的时候，需要迁移一下。
