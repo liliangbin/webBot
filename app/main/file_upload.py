@@ -5,6 +5,7 @@ from flask import request, render_template, redirect, url_for
 from config import Config
 from . import main
 
+
 @main.route('/upload/', methods=['GET', 'POST'])
 def settings():
     if request.method == 'GET':

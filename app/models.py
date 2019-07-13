@@ -23,9 +23,9 @@ class PoseToLocation(db.Model):
     _tablename_ = 'pose_to_location'
     id = db.Column(db.Integer, primary_key=True)
     location = db.Column(db.String(64), unique=True, index=True)
-    linear_x = db.Column(db.String(64), nullable=False)
-    linear_y = db.Column(db.String(64), nullable=False)
-    linear_z = db.Column(db.String(64), nullable=False)
+    position_x = db.Column(db.String(64), nullable=False)
+    position_y = db.Column(db.String(64), nullable=False)
+    position_z = db.Column(db.String(64), nullable=False)
     orientation_x = db.Column(db.String(64), nullable=False)
     orientation_y = db.Column(db.String(64), nullable=False)
     orientation_z = db.Column(db.String(64), nullable=False)

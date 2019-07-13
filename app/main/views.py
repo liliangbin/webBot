@@ -5,6 +5,7 @@ from ..models import User
 from flask import render_template, request
 import time
 from ..models import PoseToLocation
+from ..move_base_goal import RosGoal
 
 
 @main.route('/')
@@ -35,6 +36,8 @@ def asr():
         pose_to_location = PoseToLocation.query.filter_by(location=result).first()
         print pose_to_location.linear_x + 'LOCATION '
 
-        # TODO // we will send a move_base_simple/goal topic with a pose message and then navigation the robot
+        # INFO // liliangbin 将位置信息发送给项目  但是我们没有做一个验证，就是怎么来确定这个用户确实是拿到了数据
+        ros_goal = RosGoal()
+        ros_goal.publish_goal(pose_to_location)
 
         return render_template('asr.html')
