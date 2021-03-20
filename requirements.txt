@@ -42,7 +42,7 @@ image-geometry==1.12.8
 interactive-markers==1.11.4
 ipaddress==1.0.22
 itsdangerous==1.1.0
-Jinja2==2.10.1
+Jinja2==2.11.3
 kobuki-dashboard==0.5.7
 laser-geometry==1.6.4
 libarchive-c==2.8
