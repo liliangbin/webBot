@@ -46,7 +46,7 @@ Jinja2==2.10.1
 kobuki-dashboard==0.5.7
 laser-geometry==1.6.4
 libarchive-c==2.8
-Mako==1.0.13
+Mako==1.2.2
 MarkupSafe==1.1.1
 message-filters==1.12.14
 MySQL-python==1.2.5
