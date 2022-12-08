@@ -9,7 +9,7 @@ camera-calibration==1.12.23
 camera-calibration-parsers==1.11.13
 capabilities==0.2.0
 catkin==0.7.14
-certifi==2019.6.16
+certifi==2022.12.7
 cffi==1.12.3
 chardet==3.0.4
 Click==7.0
